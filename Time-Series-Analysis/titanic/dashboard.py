@@ -77,7 +77,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("Titanic Survival Factor Explorer")
+st.title("Titanic Survival Factor Exploration")
 st.markdown("""
 This dashboard uses data visualization to analyze the key factors that affected passenger survival during the 1912 Titanic disaster.
 """)

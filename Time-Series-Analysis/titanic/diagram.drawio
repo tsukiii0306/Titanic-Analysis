@@ -1,0 +1,251 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0" version="29.2.1">
+  <diagram name="第 1 页" id="3tAOYdzr_unWH-dHrI6S">
+    <mxGraphModel dx="1169" dy="624" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-15" parent="1" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;" value="Data Processing" vertex="1">
+          <mxGeometry height="840" width="360" x="80" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-1" parent="s7wYYpNtdrgTRcmhKIYA-15" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;" value="EDA-analysis.csv" vertex="1">
+          <mxGeometry height="40" width="120" x="120" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-13" edge="1" parent="s7wYYpNtdrgTRcmhKIYA-15" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="179.5" y="80" as="sourcePoint" />
+            <mxPoint x="180" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-16" parent="s7wYYpNtdrgTRcmhKIYA-15" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;" value="Feature Selection" vertex="1">
+          <mxGeometry height="90" width="260" x="50" y="120" as="geometry">
+            <mxRectangle height="30" width="140" x="40" y="120" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-17" parent="s7wYYpNtdrgTRcmhKIYA-16" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="Age,Family:select the grouped data" vertex="1">
+          <mxGeometry height="30" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-18" parent="s7wYYpNtdrgTRcmhKIYA-16" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="Fare: select the log transformed fare" vertex="1">
+          <mxGeometry height="30" width="260" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-49" edge="1" parent="s7wYYpNtdrgTRcmhKIYA-15" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="179.5" y="470" as="sourcePoint" />
+            <mxPoint x="180" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-50" parent="s7wYYpNtdrgTRcmhKIYA-15" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;" value="Train / Test Split (70 / 30)" vertex="1">
+          <mxGeometry height="40" width="160" x="100" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-38" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="260" y="250" as="sourcePoint" />
+            <mxPoint x="260.5" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-39" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;" value="Feature Encoding" vertex="1">
+          <mxGeometry height="90" width="260" x="130" y="290" as="geometry">
+            <mxRectangle height="30" width="140" x="40" y="120" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-40" parent="s7wYYpNtdrgTRcmhKIYA-39" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;span&gt;One-Hot encoding:all categorical variables&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-41" parent="s7wYYpNtdrgTRcmhKIYA-39" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;span&gt;Except&amp;nbsp; gender (binary)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="260" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-42" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="260" y="380" as="sourcePoint" />
+            <mxPoint x="260.5" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-43" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;" value="Feature Scaling" vertex="1">
+          <mxGeometry height="90" width="260" x="130" y="420" as="geometry">
+            <mxRectangle height="30" width="140" x="40" y="120" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-44" parent="s7wYYpNtdrgTRcmhKIYA-43" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="log_fare: apply standardscaler to normalize" vertex="1">
+          <mxGeometry height="30" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-45" parent="s7wYYpNtdrgTRcmhKIYA-43" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="All other features: already encoding" vertex="1">
+          <mxGeometry height="30" width="260" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-51" parent="1" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;" value="Model Design" vertex="1">
+          <mxGeometry height="840" width="1020" x="440" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-60" parent="s7wYYpNtdrgTRcmhKIYA-51" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;" value="Logistic Regression: Binary Case" vertex="1">
+          <mxGeometry height="40" width="200" x="430" y="39" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-74" parent="s7wYYpNtdrgTRcmhKIYA-51" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;" value="Sample weight: S" vertex="1">
+          <mxGeometry height="80" width="280" x="410" y="160" as="geometry">
+            <mxRectangle height="30" width="140" x="40" y="120" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-75" parent="s7wYYpNtdrgTRcmhKIYA-74" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;font&gt;High death rate seems to be a&amp;nbsp;&lt;span style=&quot;font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-family: ui-sans-serif, system-ui, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;, &amp;quot;Segoe UI Symbol&amp;quot;, &amp;quot;Noto Color Emoji&amp;quot;; line-height: 24px; flex: 0 1 auto; flex-direction: row; justify-content: normal; align-items: normal; padding: 0px; margin: 0px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);&quot;&gt;characteristic&lt;/span&gt; of the dataset.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-79" parent="s7wYYpNtdrgTRcmhKIYA-51" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;" value="Solver" vertex="1">
+          <mxGeometry height="80" width="250" x="730" y="160" as="geometry">
+            <mxRectangle height="30" width="140" x="40" y="120" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-80" parent="s7wYYpNtdrgTRcmhKIYA-79" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="choose the default lbfgs which support l2" vertex="1">
+          <mxGeometry height="50" width="250" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-86" parent="s7wYYpNtdrgTRcmhKIYA-51" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;span&gt;Fitting outcome&lt;/span&gt;" vertex="1">
+          <mxGeometry height="90" width="310.5" x="387" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-87" parent="s7wYYpNtdrgTRcmhKIYA-86" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;span&gt;1.observe the cofficients&lt;/span&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: transparent;&quot;&gt;(positive/negitive/compare)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="310.5" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-88" parent="s7wYYpNtdrgTRcmhKIYA-86" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="2. confirm with EDA analysis" vertex="1">
+          <mxGeometry height="30" width="310.5" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-94" parent="s7wYYpNtdrgTRcmhKIYA-51" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;" value="Regularization" vertex="1">
+          <mxGeometry height="110" width="330" x="40" y="160" as="geometry">
+            <mxRectangle height="30" width="140" x="40" y="120" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-95" parent="s7wYYpNtdrgTRcmhKIYA-94" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="l2:&amp;nbsp;keeps all feature coefficients and prevent overfitting" vertex="1">
+          <mxGeometry height="30" width="330" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-96" parent="s7wYYpNtdrgTRcmhKIYA-94" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="C:use the default 1, and adjust it according to the fitting outcome / use logisticregressinCV&amp;nbsp;" vertex="1">
+          <mxGeometry height="50" width="330" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-61" edge="1" parent="s7wYYpNtdrgTRcmhKIYA-51" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="200" y="120" as="sourcePoint" />
+            <mxPoint x="200.5" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-97" edge="1" parent="s7wYYpNtdrgTRcmhKIYA-51" style="endArrow=classic;html=1;rounded=0;exitX=0.544;exitY=1.07;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="538.7999999999997" y="80.79999999999995" as="sourcePoint" />
+            <mxPoint x="540.5" y="159" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-98" edge="1" parent="s7wYYpNtdrgTRcmhKIYA-51" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="854.5" y="120" as="sourcePoint" />
+            <mxPoint x="855" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-101" edge="1" parent="s7wYYpNtdrgTRcmhKIYA-51" style="endArrow=none;html=1;rounded=0;entryX=0.479;entryY=1.048;entryDx=0;entryDy=0;entryPerimeter=0;" target="s7wYYpNtdrgTRcmhKIYA-96" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="320" />
+              <mxPoint x="198" y="320" />
+            </Array>
+            <mxPoint x="860" y="240" as="sourcePoint" />
+            <mxPoint x="510" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-81" edge="1" parent="s7wYYpNtdrgTRcmhKIYA-51" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="540" y="320" as="sourcePoint" />
+            <mxPoint x="540.5" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-82" parent="s7wYYpNtdrgTRcmhKIYA-51" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;" value="Model fitting" vertex="1">
+          <mxGeometry height="40" width="100" x="490" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-83" edge="1" parent="s7wYYpNtdrgTRcmhKIYA-51" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="539.29" y="400" as="sourcePoint" />
+            <mxPoint x="539.79" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-106" edge="1" parent="s7wYYpNtdrgTRcmhKIYA-51" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="670" />
+              <mxPoint x="760" y="670" />
+            </Array>
+            <mxPoint x="320" y="710" as="sourcePoint" />
+            <mxPoint x="760" y="710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-107" parent="s7wYYpNtdrgTRcmhKIYA-51" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;" value="overfit" vertex="1">
+          <mxGeometry height="60" width="220" x="220" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-108" parent="s7wYYpNtdrgTRcmhKIYA-107" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="decrease c / adjust&amp;nbsp; features / ..." vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-110" parent="s7wYYpNtdrgTRcmhKIYA-51" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;" value="underfit" vertex="1">
+          <mxGeometry height="60" width="220" x="650" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-111" parent="s7wYYpNtdrgTRcmhKIYA-110" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="increase c /&amp;nbsp;&amp;nbsp;/ adjust&amp;nbsp; features" vertex="1">
+          <mxGeometry height="30" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-112" edge="1" parent="s7wYYpNtdrgTRcmhKIYA-51" source="s7wYYpNtdrgTRcmhKIYA-108" style="endArrow=classic;html=1;rounded=0;exitX=-0.014;exitY=0.071;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s7wYYpNtdrgTRcmhKIYA-82" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="742" />
+              <mxPoint x="160" y="380" />
+            </Array>
+            <mxPoint x="470" y="590" as="sourcePoint" />
+            <mxPoint x="100" y="670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-113" edge="1" parent="s7wYYpNtdrgTRcmhKIYA-51" style="endArrow=classic;html=1;rounded=0;exitX=1.009;exitY=0.133;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="919" y="744" />
+              <mxPoint x="919" y="380" />
+            </Array>
+            <mxPoint x="870.9799999999996" y="743.9899999999998" as="sourcePoint" />
+            <mxPoint x="589" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-90" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="980" y="570" as="sourcePoint" />
+            <mxPoint x="980.5" y="610" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-91" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;span&gt;Train / Test Error&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="310.5" x="829" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-92" parent="s7wYYpNtdrgTRcmhKIYA-91" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=13;" value="observe overfit / underfit or just right" vertex="1">
+          <mxGeometry height="30" width="310.5" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-99" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="641" y="160" as="sourcePoint" />
+            <mxPoint x="1293" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-103" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="980" y="670" as="sourcePoint" />
+            <mxPoint x="980.5" y="710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-114" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;labelBackgroundColor=#FFFFFF;fontColor=#FFFFFF;strokeColor=#FFFFFF;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="40" y="350" as="sourcePoint" />
+            <mxPoint x="40" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-115" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeColor=#FFFFFF;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1520" y="320" as="sourcePoint" />
+            <mxPoint x="1520" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-116" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeColor=#FFFFFF;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="690" y="920" as="sourcePoint" />
+            <mxPoint x="880" y="920" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7wYYpNtdrgTRcmhKIYA-117" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeColor=#FFFFFF;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="800" y="10" as="sourcePoint" />
+            <mxPoint x="990" y="10" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

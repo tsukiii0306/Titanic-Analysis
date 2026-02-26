@@ -246,7 +246,7 @@ model_results = load_model_results()
 # 数据处理
 @st.cache_data
 def load_data():
-    df = pd.read_csv('train.csv')
+    df = pd.read_csv('titanic-dashboard/train.csv')
     df.columns = df.columns.str.lower()
     return df
 df = load_data()

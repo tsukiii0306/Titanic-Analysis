@@ -238,7 +238,7 @@ ct = ColumnTransformer(
 
 @st.cache_data
 def load_model_results():
-    return joblib.load('model_analysis_results.pkl')
+    return joblib.load('titanic-dashboard/model_analysis_results.pkl')
 
 model_results = load_model_results()
 

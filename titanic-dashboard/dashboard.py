@@ -63,7 +63,7 @@ class sextransformer(BaseEstimator,TransformerMixin):
         X_copy = X.copy()
         X_copy['sex_numeric'] = X_copy['sex'].apply(lambda x:1 if x == 'female' else 0)
         return X_copy
-# family
+# family size
 class familysizetransformer(BaseEstimator,TransformerMixin):
     def fit(self,X,y=None):
         return self
@@ -129,20 +129,19 @@ class agetransformer_kkn(BaseEstimator,TransformerMixin):
     def __init__(self, n_neighbors=5, weights='uniform'):
         self.n_neighbors = n_neighbors
         self.weights = weights
-        self.model = KNNImputer(n_neighbors=n_neighbors, weights=weights)
+        self.imputer = KNNImputer(n_neighbors=n_neighbors, weights=weights)
         self.feature = ColumnTransformer(
             [
-                ('numeric',StandardScaler(),['avg_fare','family','age']),
-                ('categories',OneHotEncoder(drop='first'),['sex_numeric','embarked_numeric','pclass','title_numeric']) # 如果test集出现没有出现的分类特征怎么处理
+                ('age','passthrough',['age']),
+                ('sex','passthrough',['sex_numeric']),
+                ('numeric',StandardScaler(),['family','avg_fare']),
+                ('category',OneHotEncoder(drop='first'),['pclass','embarked_numeric','title_numeric'])
             ]
         )
-    def feature_process(self,X):
+    def feature_processing(self,X):
         X_copy = X.copy()
-        #fare
         X_copy['avg_fare'] = np.log1p(X_copy.fare / (X_copy.family + 1))
-        #port
-        X_copy['embarked_numeric'] = X_copy.embarked.apply(lambda x:1 if x == 'C' else (2 if x == 'S' else 3))
-        #title
+        X_copy['embarked_numeric'] = X_copy.embarked.apply(lambda x:1 if x == 'C' else 2 if x == 'S' else 3)
         X_copy['title'] = X_copy.name.apply(lambda x:x.split(',')[1].split('.')[0].strip())
         def get_title(title):
             if title == 'Master':
@@ -158,25 +157,17 @@ class agetransformer_kkn(BaseEstimator,TransformerMixin):
         X_copy['title_numeric'] = X_copy.title.apply(get_title)
         return X_copy
     def fit(self,X,y=None):
-        X_features = self.feature_process(X)
-        X_processed = self.feature.fit_transform(X_features) # 加上transform才能训练knn
-        # 提取age的列索引
-        self.age_idx_ = self.feature.transformers_[0][2].index('age')
-        # 提取standardscaler参数——还原age
-        age_scaler = self.feature.named_transformers_['numeric'] # 取出standardscaler转换器
-        self.age_mean_ = age_scaler.mean_[self.age_idx_]
-        self.age_std_ = age_scaler.scale_[self.age_idx_]
-        # knn
-        self.model.fit(X_processed)
+        X_copy = X.copy()
+        X_features = self.feature_processing(X_copy)
+        X_processed = self.feature.fit_transform(X_features)
+        self.imputer.fit(X_processed)
         return self
     def transform(self,X,y=None):
         X_copy = X.copy()
-        X_features = self.feature_process(X)
-        X_processed = self.feature.transform(X_features) # 不能用fit，会用测试集的mean和std进行standardscaler
-        filled_age = self.model.transform(X_processed) # 返回和输入维度一致的numpy数组，是scaler后的age
-        age_scaled = filled_age[:,self.age_idx_]
-        age_filled = age_scaled * self.age_std_ + self.age_mean_
-        X_copy['age_filled'] = age_filled
+        X_features = self.feature_processing(X_copy)
+        X_processed = self.feature.transform(X_features)
+        X_age_filled = self.imputer.transform(X_processed)
+        X_copy['age_filled'] = X_age_filled[:,0]
         def get_age_group(age):
             if age <= 10:
                 return 'Children'
@@ -204,7 +195,7 @@ class faretransformer(BaseEstimator,TransformerMixin):
         # create mapping between pclass and adult/children median fare
         X['fare_allocated'] = X.apply(lambda x:self.dic_children_fare_[x.ticket] if x.age_filled <=10 else self.dic_adult_fare_[x.ticket], axis = 1)
         self.dic_adult_median_ = X[X.age_filled > 10].groupby('pclass')['fare_allocated'].median().to_dict()
-        self.dic_children_median_ = X[X.age_filled <= 10].groupby('pclass')['fare_allocated'].median().to_dict() #如果训练集没有抽到class1会报错
+        self.dic_children_median_ = X[X.age_filled <= 10].groupby('pclass')['fare_allocated'].median().to_dict() # 报错:训练集没有抽到class1
         # calculate overall fare median as the final filling value
         self.fare_median_ = X.fare.median() 
         return self
@@ -235,6 +226,69 @@ ct = ColumnTransformer(
         ('encoding',OneHotEncoder(drop='first'),['pclass','sex_numeric','family_size','age_group','embarked','sex_pclass'])
     ]
 )
+
+# family
+class familytransformer(BaseEstimator,TransformerMixin):
+    def fit(self,X,y=None):
+        return self
+    def transform(self,X,y=None):
+        X_copy = X.copy()
+        X_copy['family'] = X_copy.sibsp + X_copy.parch
+        return X_copy
+
+# age
+class knn_agetransformer(BaseEstimator,TransformerMixin):
+    def __init__(self,n_neighbors = 5,weights = 'uniform'):
+        self.n_neighbors = n_neighbors
+        self.weights = weights
+        self.imputer = KNNImputer(n_neighbors=n_neighbors,weights=weights)
+        self.feature = ColumnTransformer(
+            [
+                ('age','passthrough',['age']),
+                ('sex','passthrough',['sex_numeric']),
+                ('numeric',StandardScaler(),['family','avg_fare']),
+                ('category',OneHotEncoder(drop='first'),['pclass','embarked_numeric','title_numeric'])
+            ]
+        )
+    def feature_processing(self,X):
+        X_copy = X.copy()
+        X_copy['avg_fare'] = np.log1p(X_copy.fare / (X_copy.family + 1))
+        X_copy['embarked_numeric'] = X_copy.embarked.apply(lambda x:1 if x == 'C' else 2 if x == 'S' else 3)
+        X_copy['title'] = X_copy.name.apply(lambda x:x.split(',')[1].split('.')[0].strip())
+        def get_title(title):
+            if title == 'Master':
+                return 1
+            elif title == 'Miss':
+                return 2
+            elif title == 'Mr':
+                return 3
+            elif title == 'Mrs':
+                return 4
+            else:
+                return 5
+        X_copy['title_numeric'] = X_copy.title.apply(get_title)
+        return X_copy
+    def fit(self,X,y=None):
+        X_copy = X.copy()
+        X_features = self.feature_processing(X_copy)
+        X_processed = self.feature.fit_transform(X_features)
+        self.imputer.fit(X_processed)
+        return self
+    def transform(self,X,y=None):
+        X_copy = X.copy()
+        X_features = self.feature_processing(X_copy)
+        X_processed = self.feature.transform(X_features)
+        X_age_filled = self.imputer.transform(X_processed)
+        X_copy['age_filled'] = X_age_filled[:,0]
+        return X_copy
+
+ct2 = ColumnTransformer(
+    [
+        ('encoding',OneHotEncoder(),['embarked','pclass']),
+        ('features','passthrough',['age_filled','sex_numeric','fare','family'])
+    ]
+)
+
 
 @st.cache_data
 def load_model_results():
@@ -330,12 +384,9 @@ with st.sidebar:
 
     # 2. 模型选择
     with st.expander("🤖 Model Selection", expanded=True):
-        model_type = st.selectbox("Select Model:", ["Logistic Regression", "Random Forest", "XGBoost"])
-        if model_type == 'Logistic Regression':
-            age_impute_method = st.radio('Choose Age Imputation Method:',['Random Forest', 'KNN'])
-            selected_method = age_impute_method
-        else:
-            st.warning('Module in development')
+        model_type = st.selectbox("Select Model:", ['Logistic Regression', 'Random Forest'])
+        age_impute_method = st.radio('Choose Age Imputation Method:',['Random Forest', 'KNN'])
+        selected_method = age_impute_method
 
 current_df = get_data(df, age_method, fare_allocation, fare_transform)
 
@@ -655,7 +706,7 @@ if model_type == 'Logistic Regression' and selected_method:
     st.subheader(f'Model Selection: {model_type}')
     st.markdown("")
     st.markdown("")
-    current_result = model_results[selected_method]
+    current_result = model_results[model_type][selected_method]
     current_grid = current_result['grid']
     current_train_accuracy = current_result['test']
     # key metrics
@@ -692,3 +743,46 @@ if model_type == 'Logistic Regression' and selected_method:
     ).rename_axis('Parameters')
     params_df['Value'] = params_df['Value'].astype(str)
     st.dataframe(params_df, width=400, height=140)
+
+elif model_type == 'Random Forest' and selected_method:
+    st.subheader(f'Model Selection: {model_type}')
+    st.markdown("")
+    st.markdown("")
+    current_result = model_results[model_type][selected_method]
+    current_grid = current_result['grid']
+    current_train_accuracy = current_result['test']
+    # key metrics
+    col1, col2, col3 = st.columns(3)
+    col1.metric('Best CV Score', f'{current_grid.best_score_ * 100:.2f}%')
+    col2.metric('Train set Accuracy',f'{current_train_accuracy * 100:.2f}%')
+    col3.metric('Age Imputation',selected_method)
+   
+    # pipeline
+    st.markdown("")
+    st.markdown('#### Pipeline Architecture')
+    coll, col2, col3 = st.columns([1, 8, 1])
+    with col2:
+        with st.container(border=True):
+            best_pipeline = current_grid.best_estimator_
+            raw_html = estimator_html_repr(best_pipeline)
+            centered_html = f"""  
+        <div style="text-align: center; width: 100%; padding-top: 0;">
+            <div style="display: inline-block; text-align: left; margin: 0 auto;">
+                {raw_html}
+            </div>
+        </div>
+        """  # 居中显示
+            components.html(centered_html, height=450, scrolling=True)
+
+    # parameters
+    st.markdown("")
+    st.markdown("#### Best Hyperparameters")
+    st.markdown("")
+    params_df = pd.DataFrame.from_dict(
+        current_grid.best_params_, 
+        orient='index', 
+        columns=['Value']
+    ).rename_axis('Parameters')
+    params_df['Value'] = params_df['Value'].astype(str)
+    st.dataframe(params_df, width=400, height=140)
+

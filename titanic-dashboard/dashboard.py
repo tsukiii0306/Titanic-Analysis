@@ -694,6 +694,51 @@ with st.expander('Conclusions'):
     """)
 st.markdown("---")
 
+st.markdown('#### Exploration Ⅲ: Gender and Family Size Interaction Effect')
+with st.expander("Observation I: Stratified Analysis by Gender", expanded=False):
+    col1, col2 = st.columns(2)
+    with col1:
+        fig1, ax1 = plt.subplots(figsize=(6, 4.5))
+        sns.countplot(data=current_df, x='sex',hue='family_size', palette='dark:#5F749D', ax=ax1)
+        for container in ax1.containers:
+            ax1.bar_label(container, fmt='%d', padding=6)
+        ax1.set(title='Sex Distribution by Family Size', xlabel='Sex', ylabel='Count')
+        st.pyplot(fig1)
+    with col2:
+        fig2, ax2 = plt.subplots(figsize=(6, 4.5))
+        sns.barplot(data=current_df, x='sex', y='survived', hue='family_size', palette='dark:#5F749D', errorbar=None, ax=ax2)
+        for container in ax2.containers:
+            ax2.bar_label(container, fmt=lambda x: f"{x*100:.1f}%", padding=6)
+        ax2.set(title='Survival Rate by Sex and Family Size', xlabel='Sex', ylabel='Survival Rate (%)')
+        st.pyplot(fig2)
+with st.expander("Observation Ⅱ: Stratified Analysis by Family Size", expanded=False):
+    col1, col2 = st.columns(2)
+    with col1:
+        fig1, ax1 = plt.subplots(figsize=(6, 4.5))
+        sns.countplot(data=current_df, x='family_size',hue='sex', palette='dark:#5F749D', ax=ax1)
+        for container in ax1.containers:
+            ax1.bar_label(container, fmt='%d', padding=6)
+        ax1.set(title='Family Size Distribution by Sex', xlabel='Family Szie', ylabel='Count')
+        st.pyplot(fig1)
+    with col2:
+        fig2, ax2 = plt.subplots(figsize=(6, 4.5))
+        sns.barplot(data=current_df, x='family_size', y='survived', hue='sex', palette='dark:#5F749D', errorbar=None, ax=ax2)
+        for container in ax2.containers:
+            ax2.bar_label(container, fmt=lambda x: f"{x*100:.1f}%", padding=6)
+        ax2.set(title='Survival Rate by Sex and Family Size', xlabel='Family Szie', ylabel='Survival Rate (%)')
+        st.pyplot(fig2)
+with st.expander("Conclusions", expanded=False):
+    st.info("""
+    * **For female:**
+    * The survival advantage of female seems to come from gender itself, and it doesn't seem to be affected much by whether the female traveled alone or with small family members.
+    * However, females from large size family have significant lower survival rate, which is consistent with the observation in port S(lower survival rate for females).
+    * **For male:**
+    * For passengers traveling alone, the huge proportion of males leads to a lower overall survival rate. 
+    * In small families, the male to female ratio is roughly equal, and the survival rate of men indeed increased a lot and it might be related with the higher survival rates of the women around them.
+    * **Explanation:**Negative coefficient of small size family
+    * The female samples in small family is mainly explained by the feature sex while the rest survival rate of male is below the average level, so the model give it a negative coefficient.
+    """)      
+
 # EDA分析结论
 st.subheader("Conclusion")
 st.info("""

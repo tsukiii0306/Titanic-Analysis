@@ -703,6 +703,7 @@ with st.expander("Observation: Gender and Family Size Interaction Effect", expan
         for container in ax1.containers:
             ax1.bar_label(container, fmt='%d', padding=6)
         ax1.set(title='Sex Distribution by Family Size', xlabel='Sex', ylabel='Count')
+        ax1.legend(title="family Size", loc='upper right', fontsize=8)
         st.pyplot(fig1)
     with col2:
         fig2, ax2 = plt.subplots(figsize=(6, 4.5))
@@ -710,6 +711,7 @@ with st.expander("Observation: Gender and Family Size Interaction Effect", expan
         for container in ax2.containers:
             ax2.bar_label(container, fmt=lambda x: f"{x*100:.1f}%", padding=6)
         ax2.set(title='Survival Rate by Sex and Family Size', xlabel='Sex', ylabel='Survival Rate (%)')
+        ax2.legend(title="family Size", loc='upper right', fontsize=8)
         st.pyplot(fig2)
     col1, col2 = st.columns(2)
     with col1:
@@ -728,6 +730,7 @@ with st.expander("Observation: Gender and Family Size Interaction Effect", expan
         st.pyplot(fig2)
     st.info("""
     **Observations:**
+            
     **For Female:**
     * The survival advantage of female seems to come from gender itself, and it doesn't seem to be affected much by whether the female traveled alone or with small family members.
     * However, females from large size family have significant lower survival rate, which is consistent with the observation in port S(lower survival rate for females).

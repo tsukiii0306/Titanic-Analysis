@@ -692,9 +692,10 @@ with st.expander('Conclusions'):
     * The lowest survival rate at Port S is resulted from a combination of lower proportion of females, more 3rd class passengers and higher proportion of large families.
     * It seems that higher survival rate for female in Port S is connected with family size, but the sample is very small and there might be some other reasons.
     """)
+st.markdown("")
 
-st.markdown('#### Exploration Ⅲ: Gender and Family Size Interaction Effect')
-with st.expander("Observation I: Stratified Analysis by Gender", expanded=False):
+st.markdown('#### Exploration Ⅲ: The Negative Coefficient of Family Size')
+with st.expander("Observation: Gender and Family Size Interaction Effect", expanded=False):
     col1, col2 = st.columns(2)
     with col1:
         fig1, ax1 = plt.subplots(figsize=(6, 4.5))
@@ -710,7 +711,6 @@ with st.expander("Observation I: Stratified Analysis by Gender", expanded=False)
             ax2.bar_label(container, fmt=lambda x: f"{x*100:.1f}%", padding=6)
         ax2.set(title='Survival Rate by Sex and Family Size', xlabel='Sex', ylabel='Survival Rate (%)')
         st.pyplot(fig2)
-with st.expander("Observation Ⅱ: Stratified Analysis by Family Size", expanded=False):
     col1, col2 = st.columns(2)
     with col1:
         fig1, ax1 = plt.subplots(figsize=(6, 4.5))
@@ -726,15 +726,17 @@ with st.expander("Observation Ⅱ: Stratified Analysis by Family Size", expanded
             ax2.bar_label(container, fmt=lambda x: f"{x*100:.1f}%", padding=6)
         ax2.set(title='Survival Rate by Sex and Family Size', xlabel='Family Szie', ylabel='Survival Rate (%)')
         st.pyplot(fig2)
-with st.expander("Conclusions", expanded=False):
     st.info("""
-    **For female:**
+    **Observations:**
+    **For Female:**
     * The survival advantage of female seems to come from gender itself, and it doesn't seem to be affected much by whether the female traveled alone or with small family members.
     * However, females from large size family have significant lower survival rate, which is consistent with the observation in port S(lower survival rate for females).
-    **For male:**
-    * For passengers traveling alone, the huge proportion of males leads to a lower overall survival rate. 
+            
+    **For Male:**
+    * For passengers traveling alone, the huge proportion of males leads to a lower overall survival rate.
     * In small families, the male to female ratio is roughly equal, and the survival rate of men indeed increased a lot and it might be related with the higher survival rates of the women around them.
-    **Explanation:**Negative coefficient of small size family
+    
+    **Explanation:**
     * The female samples in small family is mainly explained by the feature sex while the rest survival rate of male is below the average level, so the model give it a negative coefficient.
     """)   
 st.markdown("---")   

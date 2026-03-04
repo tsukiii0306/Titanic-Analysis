@@ -219,6 +219,24 @@ class sexpclasstransformer(BaseEstimator,TransformerMixin):
         X_copy['sex_pclass'] = X_copy.sex.apply(lambda x:x.strip()) + X_copy.pclass.apply(lambda x:str(x).strip())
         return X_copy
 
+# male + small family size 
+class male_smallfamilysizetransformer(BaseEstimator,TransformerMixin):
+    def fit(self,X,y=None):
+        return self
+    def transform(self,X,y=None):
+        X_copy = X.copy()
+        X_copy['male_smallfamilysize'] = X_copy.apply(lambda x:1 if x.sex == 'male' and x.family_size == 'small' else 0, axis = 1)
+        return X_copy
+    
+# femle + large family size (0.78708)
+class female_largefamilysizetransformer(BaseEstimator,TransformerMixin):
+    def fit(self,X,y=None):
+        return self
+    def transform(self,X,y=None):
+        X_copy = X.copy()
+        X_copy['female_largefamilysize'] = X_copy.apply(lambda x:1 if x.sex == 'female' and x.family_size == 'large' else 0, axis = 1)
+        return X_copy
+
 # columntransformer
 ct = ColumnTransformer(
     [

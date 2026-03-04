@@ -227,68 +227,12 @@ ct = ColumnTransformer(
     ]
 )
 
-# family
-class familytransformer(BaseEstimator,TransformerMixin):
-    def fit(self,X,y=None):
-        return self
-    def transform(self,X,y=None):
-        X_copy = X.copy()
-        X_copy['family'] = X_copy.sibsp + X_copy.parch
-        return X_copy
-
-# age
-class knn_agetransformer(BaseEstimator,TransformerMixin):
-    def __init__(self,n_neighbors = 5,weights = 'uniform'):
-        self.n_neighbors = n_neighbors
-        self.weights = weights
-        self.imputer = KNNImputer(n_neighbors=n_neighbors,weights=weights)
-        self.feature = ColumnTransformer(
-            [
-                ('age','passthrough',['age']),
-                ('sex','passthrough',['sex_numeric']),
-                ('numeric',StandardScaler(),['family','avg_fare']),
-                ('category',OneHotEncoder(drop='first'),['pclass','embarked_numeric','title_numeric'])
-            ]
-        )
-    def feature_processing(self,X):
-        X_copy = X.copy()
-        X_copy['avg_fare'] = np.log1p(X_copy.fare / (X_copy.family + 1))
-        X_copy['embarked_numeric'] = X_copy.embarked.apply(lambda x:1 if x == 'C' else 2 if x == 'S' else 3)
-        X_copy['title'] = X_copy.name.apply(lambda x:x.split(',')[1].split('.')[0].strip())
-        def get_title(title):
-            if title == 'Master':
-                return 1
-            elif title == 'Miss':
-                return 2
-            elif title == 'Mr':
-                return 3
-            elif title == 'Mrs':
-                return 4
-            else:
-                return 5
-        X_copy['title_numeric'] = X_copy.title.apply(get_title)
-        return X_copy
-    def fit(self,X,y=None):
-        X_copy = X.copy()
-        X_features = self.feature_processing(X_copy)
-        X_processed = self.feature.fit_transform(X_features)
-        self.imputer.fit(X_processed)
-        return self
-    def transform(self,X,y=None):
-        X_copy = X.copy()
-        X_features = self.feature_processing(X_copy)
-        X_processed = self.feature.transform(X_features)
-        X_age_filled = self.imputer.transform(X_processed)
-        X_copy['age_filled'] = X_age_filled[:,0]
-        return X_copy
-
 ct2 = ColumnTransformer(
     [
-        ('encoding',OneHotEncoder(),['embarked','pclass']),
-        ('features','passthrough',['age_filled','sex_numeric','fare','family'])
+        ('encoding',OneHotEncoder(),['embarked','pclass','family_size','age_group']),
+        ('features','passthrough',['sex_numeric','fare'])
     ]
 )
-
 
 @st.cache_data
 def load_model_results():

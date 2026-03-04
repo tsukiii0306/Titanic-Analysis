@@ -711,7 +711,7 @@ with st.expander("Observation: Gender and Family Size Interaction Effect", expan
         for container in ax2.containers:
             ax2.bar_label(container, fmt=lambda x: f"{x*100:.1f}%", padding=6)
         ax2.set(title='Survival Rate by Sex and Family Size', xlabel='Sex', ylabel='Survival Rate (%)')
-        ax2.legend(title="family Size", loc='upper right', fontsize=8)
+        ax2.legend(title="family Size", loc='lower right', fontsize=8)
         st.pyplot(fig2)
     col1, col2 = st.columns(2)
     with col1:

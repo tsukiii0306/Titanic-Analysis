@@ -656,8 +656,8 @@ with st.expander('Conclusions'):
     """)
 st.markdown("")
 
-st.markdown('#### Exploration Ⅲ: The Negative Coefficient of Family Size')
-with st.expander("Observation: Gender and Family Size Interaction Effect", expanded=False):
+st.markdown('#### Exploration Ⅲ: Interaction Effects Between Gender and Family Size')
+with st.expander("Observation: Decoding the Negative Coefficient of Small Family", expanded=False):
     col1, col2 = st.columns(2)
     with col1:
         fig1, ax1 = plt.subplots(figsize=(6, 4.5))
@@ -693,17 +693,21 @@ with st.expander("Observation: Gender and Family Size Interaction Effect", expan
     st.info("""
     **Observations:**
             
-    **For Female:**
-    * The survival advantage of female seems to come from gender itself, and it doesn't seem to be affected much by whether the female traveled alone or with small family members.
-    * However, females from large size family have significant lower survival rate, which is consistent with the observation in port S(lower survival rate for females).
+    **Female Passengers:**
+    * The survival advantage is primarily driven by gender itself, showing little difference between traveling alone or in small families. However, females in large families suffer a significant survival penalty, which is consistent with our findings in Port S.
             
-    **For Male:**
-    * For passengers traveling alone, the huge proportion of males leads to a lower overall survival rate.
-    * In small families, the male to female ratio is roughly equal, and the survival rate of men indeed increased a lot and it might be related with the higher survival rates of the women around them.
-    
+    **Male Passengers:**
+    * For passengers **traveling alone**, the huge proportion of males leads to a lower overall survival rate. In **small families**, the male to female ratio is roughly equal, and the survival rate of men indeed increased a lot and it might be related with the higher survival rates of the women around them.
+    """)   
+with st.expander("Conclusions", expanded=False):
+    st.info("""
     **Explanation:**
     * The female samples in small family is mainly explained by the feature sex while the rest survival rate of male is below the average level, so the model give it a negative coefficient.
-    """)   
+    
+    **Action:**
+    * Add feature interations in modeling to help model capture the real relationships between gender and family size.
+    """)
+
 st.markdown("---")   
 
 # EDA分析结论

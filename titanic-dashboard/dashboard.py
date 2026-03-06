@@ -238,10 +238,11 @@ class female_largefamilysizetransformer(BaseEstimator,TransformerMixin):
         return X_copy
 
 # columntransformer
-ct = ColumnTransformer(
+ct_family = ColumnTransformer(
     [
         ('scaler',StandardScaler(),['new_fare']),
-        ('encoding',OneHotEncoder(drop='first'),['pclass','sex_numeric','family_size','age_group','embarked','sex_pclass'])
+        ('encoding',OneHotEncoder(drop='first'),['pclass','age_group','embarked','sex_pclass']),
+        ('binary_features','passthrough',['sex_numeric','male_smallfamilysize','female_largefamilysize'])
     ]
 )
 
@@ -656,8 +657,8 @@ with st.expander('Conclusions'):
     """)
 st.markdown("")
 
-st.markdown('#### Exploration Ⅲ: Interaction Effects Between Gender and Family Size')
-with st.expander("Observation: Decoding the Negative Coefficient of Small Family", expanded=False):
+st.markdown('#### Exploration Ⅲ: Decoding the Negative Coefficient of Small Family')
+with st.expander("Observation: Interaction Effects Between Gender and Family Size", expanded=False):
     col1, col2 = st.columns(2)
     with col1:
         fig1, ax1 = plt.subplots(figsize=(6, 4.5))
